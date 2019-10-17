@@ -22,8 +22,6 @@ int locCheck(int grid[][COLS], int x, int y, bool visited[][COLS]){
 
 int GetMaxIsland(int grid[][COLS],int i,int j){
     int maxValue = 1;
-    int gridStatus = 0;
-    //(x,y)
     bool visited[ROWS][COLS];
     memset(visited, false, sizeof(visited));
     visited[0][0] = true;
@@ -79,7 +77,6 @@ int main() {
                             {0,0,0,1}};
     
     cout<<"Max area: "<<traverseGrid(grid)<<endl;
-            
-    //cout<<"Hello World";
+
     return 0;
 }
