@@ -21,7 +21,7 @@ int locCheck(int grid[][COLS], int x, int y, bool visited[][COLS]){
 }
 
 int GetMaxIsland(int grid[][COLS],int i,int j){
-    int maxValue = 1;
+    int maxValue = 0;
     bool visited[ROWS][COLS];
     memset(visited, false, sizeof(visited));
     visited[0][0] = true;
