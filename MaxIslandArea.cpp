@@ -1,32 +1,44 @@
 #include <iostream>
 #include <queue>
 #include<cstring>
-# define ROWS 4
-# define COLS 4
 
 using namespace std;
 
+// defining the rows and cols of the grid
+# define ROWS 4
+# define COLS 4
+
+// node for grid location
 struct Node{
     int x;
     int y;
     };
 
-// (0,0) = (1,0), (0,1), (0,-1), (-1,0)
-int row[] = {1,0,0,-1};
-int cols[] = {0,1,-1,0};
+// defining the directions for the current grid coordinate
+int row[] = {0,1,0,0,-1};
+int cols[] = {0,0,1,-1,0};
 
+// check if the grid location is valid
 int locCheck(int grid[][COLS], int x, int y, bool visited[][COLS]){
     return x>=0 && x<ROWS && y>=0 && y<COLS && !visited[x][y] && grid[x][y];
 
 }
 
+// calculate the max value of the modified grid
 int GetMaxIsland(int grid[][COLS],int i,int j){
     int maxValue = 0;
+    int gridStatus = 0;
     bool visited[ROWS][COLS];
     memset(visited, false, sizeof(visited));
     visited[0][0] = true;
     queue<Node> node_queue;
     node_queue.push({i,j});
+    
+    if(grid[0][0] == 0){
+        maxValue = 0;
+    } else{
+        maxValue = 1;
+        }
     
     while(!node_queue.empty()){
         Node temp_node = node_queue.front();
@@ -49,6 +61,7 @@ int GetMaxIsland(int grid[][COLS],int i,int j){
     return maxValue;
 }
 
+// modify the grid location by 1 at a time
 int traverseGrid(int grid[][COLS]){
     
     static int maxArea = 0;
@@ -71,10 +84,10 @@ int traverseGrid(int grid[][COLS]){
 
 int main() {
     
-    int grid[ROWS][COLS] = {{1,1,1,0},
-                            {1,1,1,0},
-                            {1,0,0,0},
-                            {0,0,0,1}};
+    int grid[ROWS][COLS] = {{1,0,0,0},
+                            {1,1,0,0},
+                            {1,1,0,0},
+                            {0,0,0,0}};
     
     cout<<"Max area: "<<traverseGrid(grid)<<endl;
 
